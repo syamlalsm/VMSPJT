@@ -1,0 +1,199 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technopark Overview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #cbe9f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(175, 247, 206);
+        }
+
+        .navbar-brand img {
+            padding-left: 10px;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 102vh;
+        }
+
+        video {
+            max-width: 200vh;
+            height: 100vh;
+        }
+
+        .center-button, .center-button2 {
+            position: absolute;
+            background-color: rgb(138, 138, 245);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .center-button {
+            top: 172%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+        }
+
+        .center-button2 {
+            top: 172%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(138, 138, 245);
+        }
+
+        button:hover {
+            background-color: #acf0b4;
+        }
+
+        .box-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .box {
+            width: 45%;
+            background: #9ceaad;
+            color: white;
+            border-radius: 15px;
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 0.5s ease-out;
+        }
+
+        .box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content, .image {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .image {
+            display: flex;
+            justify-content: center;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .box-container {
+                flex-direction: column;
+            }
+            .box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="{% static 'images/tp-logo.png' %}" width="220" height="50" class="d-inline-block align-top" alt="">
+    </a>
+</nav>
+{% block content %}
+<div class="container video-container">
+    <video controls autoplay loop>
+        <source src="{% static 'videos/13.mp4' %}" type="video/mp4">
+    </video>
+   
+</div>
+
+<div class="box-container">
+    <div class="box" id="animationBox">
+        <div class="content">
+            <h2>Technopark Phase I</h2>
+            <p>Technopark Phase I campus is a part of Technopark, a technology park located in Thiruvananthapuram, Kerala, India. It stands as one of India's largest IT parks and is renowned as one of the world's greenest Technopolis’s. This campus offers a world-class ecosystem tailored for IT and ITeS companies and professionals.</p>
+        </div>
+        <div class="image">
+            <img src="{% static 'images/12945153195_4edcf237c1_z.jpg' %}" alt="Placeholder Image">
+        </div>
+    </div>
+
+    <div class="box" id="animationBox2">
+        <div class="image">
+            <img src="{% static 'images/maxresdefault.jpg' %}" alt="Placeholder Image">
+        </div>
+        <div class="content">
+            <h2>Technopark Phase III</h2>
+            <p>Technopark Phase II is a captive SEZ campus leased out to UST Global and Infosys. Out of 86 acres, 50 acres is leased out to Infosys and 36 acres to M/s UST Technology International (P) Ltd for creating their own IT Infrastructure. Technopark Phase II campus is located near Kazhakkoottam.</p>
+        </div>
+    </div>
+</div>
+
+<div class="box-container">
+    <div class="box" id="animationBox3">
+        <div class="content">
+            <h2>Technocity</h2>
+            <p>Technocity is a technology park that is an integrated township currently under construction in Trivandrum, India dedicated to electronics, software, and other information technology. It was conceived in 2005 as the fourth phase of development of Technopark.</p>
+        </div>
+        <div class="image">
+            <img src="{% static 'images/920.jpg' %}" alt="Placeholder Image">
+        </div>
+    </div>
+
+    <div class="box" id="animationBox4">
+        <div class="image">
+            <img src="{% static 'images/527.png' %}" alt="Placeholder Image">
+        </div>
+        <div class="content">
+            <h2>Technopark Kollam</h2>
+            <p>Technopark Phase V (Kollam) spans an area of 4.44 acres of land and features a LEED Gold-certified building known as Ashtamudi. This remarkable building covers 1 lakh sq ft and is set against the enchanting backdrop of the spectacular Ashtamudi Lake, with its vast expanse of pristine waters.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function handleScroll() {
+        const boxes = document.querySelectorAll('.box');
+        boxes.forEach(box => {
+            const boxPosition = box.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.5;
+
+            if (boxPosition < screenPosition) {
+                box.classList.add('visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', handleScroll);
+</script>
+<button class="center-button" onclick="location.href='{% url 'login' %}'">Signin</button>
+<button class="center-button2" onclick="location.href='{% url 'register' %}'">Signup</button>
+
+</body>
+</html>
+{% endblock content %}

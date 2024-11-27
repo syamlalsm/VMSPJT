@@ -1,0 +1,91 @@
+{% extends 'techlogo.html' %}
+{% block content %}
+<style>
+    .login-container {
+        background-color: #ffffff; 
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        margin: 100px auto; 
+        padding: 30px; 
+        text-align: center; 
+        width: 400px;
+        margin-top: 60px;
+    }
+
+    h2 {
+        color: #333; 
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: red; 
+        margin-bottom: 15px;
+    }
+
+    label {
+        color: #555; 
+        display: block; 
+        font-weight: bold; 
+        margin: 10px 0;
+    }
+
+    input {
+        border: 1px solid #ccc; 
+        border-radius: 5px;
+        font-size: 16px; 
+        margin-bottom: 15px; 
+        padding: 10px;
+        width: 95%; 
+    }
+
+    button {
+        background-color: #7eb2ea;
+        border: none; 
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-size: 16px; 
+        padding: 12px; 
+        width: 100%;
+    }
+
+    button:hover {
+        background-color: #66eba2;
+    }
+
+    a {
+        color: #007bff; 
+        display: block;
+        margin-top: 10px; 
+        text-decoration: none; 
+    }
+
+    a:hover {
+        text-decoration: underline; 
+    }
+</style>
+
+<div class="login-container">
+    <h2>LOGIN PAGE</h2>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+   
+    <form method="POST" action="{% url 'visitor_form' %}">
+        {% csrf_token %}
+        
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+        
+        <button type="submit">Login</button>
+    </form>
+
+    <a href="{% url 'register' %}">New customer? Register here</a>
+</div>
+{% endblock %}

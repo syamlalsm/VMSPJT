@@ -1,0 +1,133 @@
+{% extends 'techlogo.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor ID Card</title>
+    
+   
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+      
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgba(175, 247, 206);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .id-card-container {
+            position: absolute;
+            top: -100%;  
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 350px;
+            animation: slideIn 4.2s ease-in-out forwards; 
+        }
+
+        
+        @keyframes slideIn {
+            0% {
+                top: -100%;  
+            }
+            100% {
+                top: 60px; 
+            }
+        }
+
+        .id-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            border: 2px solid;
+            border-color: #9bc4ef;
+            color: #000000;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        
+        .id-card h2 {
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        .id-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #90bae6;
+        }
+
+       .id-card p {
+            font-size: 14px;
+            color: #038d38;
+            margin-bottom: 10px;
+        }
+
+        .id-card p strong {
+            font-weight: 600;
+            color: #1505f5;
+        }
+
+        
+        @media (max-width: 480px) {
+            .id-card-container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .id-card h2 {
+                font-size: 18px;
+            }
+
+            .id-card img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="id-card-container">
+        <div class="id-card">
+            <h2>Visitor ID Card</h2>
+            <img src="{{ visitor.photo.url }}" alt="Visitor Photo">
+            <h3>{{ visitor.name }}</h3>
+
+            <p><strong>Phase:</strong> {{ visitor.phase.name }}</p>
+            <p><strong>Building:</strong> {{ visitor.building.name }}</p>
+            <p><strong>Company:</strong> {{ visitor.company.name }}</p>
+            <p><strong>Purpose:</strong> {{ visitor.purpose }}</p>
+            <p><strong>Email:</strong> {{ visitor.email }}</p>
+            <p><strong>Phone:</strong> {{ visitor.phone_number }}</p>
+            <p><strong>Visit Date:</strong> {{ visitor.visit_date }}</p>
+            <p><strong>Visit Time:</strong> {{ visitor.visit_time }}</p>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+{% endblock content %}
